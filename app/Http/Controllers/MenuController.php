@@ -44,7 +44,7 @@ class MenuController extends Controller
 {
     // Método index que retorna la vista principal de los menús.
     public function index(){
-        return view('menu.menu');
+        return view('menu.index');
     }
 
     // Método create que retorna la vista para crear un nuevo menú.
@@ -54,7 +54,7 @@ class MenuController extends Controller
 
     // Método show que muestra los detalles de un menú específico.
     public function show($menu){
-        return view('menu.show', ['agenda' => $menu]);
+        return view('menu.show', ['menu' => $menu]);
     }
 
      // Método store que maneja la solicitud de almacenamiento de un nuevo menú.
