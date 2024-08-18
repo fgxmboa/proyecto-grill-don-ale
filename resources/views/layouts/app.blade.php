@@ -8,7 +8,7 @@
 </head>
 <body>
     @section('sidebar')
-        Este es el menú lateral maestro.
+        Grill Don Ale. (Desde app.blade.php)
     @show
 
     <div>
