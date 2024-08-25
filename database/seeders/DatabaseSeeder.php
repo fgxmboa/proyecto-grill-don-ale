@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->create();
         $this->call([
             ClienteSeeder::class,
-            //MenuSeeder::class,
+            MenuSeeder::class,
         ]);
         //orden::factory(50)->create();
     }
