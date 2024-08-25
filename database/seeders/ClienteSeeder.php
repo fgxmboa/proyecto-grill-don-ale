@@ -40,6 +40,6 @@ class ClienteSeeder extends Seeder
         $oCliente3->telefono = '88273361';
         $oCliente3->direccion = 'Purral';
         $oCliente3->save();
-        //cliente::factory(50)->create();
+        cliente::factory(50)->create();
     }
 }
