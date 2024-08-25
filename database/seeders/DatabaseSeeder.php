@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
             ClienteSeeder::class,
             MenuSeeder::class,
         ]);
-        //orden::factory(50)->create();
+        orden::factory(50)->create();
     }
 }
