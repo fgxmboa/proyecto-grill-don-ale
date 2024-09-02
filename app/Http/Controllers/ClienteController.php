@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\cliente;
 use App\Models\menu;
 use App\Models\pedido;
+use App\Http\Requests\StoreClienteRequest;
 
 // Definición de la clase que actúa como un modelo básico para almacenar información del cliente.
 class ClassCliente{
@@ -70,28 +71,19 @@ class ClienteController extends Controller
             'oPedido' => $oPedido
         ]);
     }
-    public function store(Request $request){
-        $request->validate([
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'cedula' => 'required|numeric',
-            'email' => 'required|email',
-            'telefono' => 'required',
-            'direccion' => 'required',
-        ]);
-
-        $cliente = new Cliente();
-        $cliente->nombre = $request->get('nombre');
-        $cliente->apellido = $request->get('apellido');
-        $cliente->cedula = $request->get('cedula');
-        $cliente->email = $request->get('email');
-        $cliente->telefono = $request->get('telefono');
-        $cliente->direccion = $request->get('direccion');
+    public function store(StoreClienteRequest $request){
+        $oCliente = new Cliente();
+        $oCliente->nombre = $request->get('nombre');
+        $oCliente->apellido = $request->get('apellido');
+        $oCliente->cedula = $request->get('cedula');
+        $oCliente->email = $request->get('email');
+        $oCliente->telefono = $request->get('telefono');
+        $oCliente->direccion = $request->get('direccion');
 
         // Guardamos la información en la base de datos
-        $cliente->save();
+        $oCliente->save();
 
-        return redirect()->route('cliente.show', $cliente);
+        return redirect()->route('cliente.show', $oCliente);
 
     }
 }
