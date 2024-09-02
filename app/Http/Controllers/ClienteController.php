@@ -60,7 +60,15 @@ class ClienteController extends Controller
         return view('cliente.create', compact('oMenus', 'oPedidos'));
     }
     public function show($cliente){
-        return view('cliente.show', ['cliente' => $cliente]);
+        $oCliente = cliente::find($cliente);
+        $oMenu = menu::find($oCliente->idMenu);
+        $oPedido = pedido::find($oCliente->idOrdenes);
+
+        return view("cliente.show", [
+            'cliente' => $oCliente,
+            'oMenu' => $oMenu,
+            'oPedido' => $oPedido
+        ]);
     }
     public function store(Request $request){
         $request->validate([
