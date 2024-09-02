@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\cliente;
-use App\Models\orden;
+use App\Models\pedido;
 use App\Models\menu;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
             ClienteSeeder::class,
             MenuSeeder::class,
         ]);
-        orden::factory(50)->create();
+        pedido::factory(50)->create();
     }
 }

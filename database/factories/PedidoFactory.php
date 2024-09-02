@@ -6,7 +6,7 @@ use App\Models\cliente;
 use App\Models\menu;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class OrdenFactory extends Factory
+class PedidoFactory extends Factory
 {
     /**
      * Define the model's default state.

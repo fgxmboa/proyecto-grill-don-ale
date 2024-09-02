@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
-@section('title', 'Cliente | Grill Don Ale')
+@section('title', 'Crear cliente | Grill Don Ale')
 
 @section('content')
 @section('sidebar')
     @parent
 @endsection
     <form action="{{ route('cliente.store') }}" method="POST">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        @csrf
         <div style="text-align: left; font-family: Arial">
             <strong><span id="idFotograma" style="font-family: Arial; font-size: 24pt">Crear nuevo cliente</span></strong>
             <br /><br />
 
             Nombre:<br />
-            <input name="nombre" type="text" id="nombre" style="width:504px;" /><br />
+            <input name="nombre" type="text" id="nombre" style="width:504px;" value="{{ old('nombre') }}"/><br />
             @error('nombre')
                 <br>
                 <small>{{ $message }}</small>
@@ -21,15 +21,23 @@
             @enderror
 
             Apellidos:<br />
-            <input name="apellidos" type="text" id="apellidos" style="width:504px;" /><br />
-            @error('apellidos')
+            <input name="apellido" type="text" id="apellido" style="width:504px;" value="{{ old('apellido') }}" /><br />
+            @error('apellido')
+                <br>
+                <small>{{ $message }}</small>
+                <br>
+            @enderror
+
+            Cédula:<br/>
+            <input name="cedula" type="text" id="cedula" style="width:504px;" value="{{ old('cedula') }}"/><br />
+            @error('cedula')
                 <br>
                 <small>{{ $message }}</small>
                 <br>
             @enderror
 
             Correo Electronico:<br />
-            <input name="email" type="email" id="email" style="width:504px;" /><br />
+            <input name="email" type="email" id="email" style="width:504px;" value="{{ old('email') }}"/><br />
             @error('email')
                 <br>
                 <small>{{ $message }}</small>
@@ -37,7 +45,7 @@
             @enderror
 
             Telefono:<br/>
-            <input name="telefono" type="text" id="telefono" style="width:504px;" /><br />
+            <input name="telefono" type="text" id="telefono" style="width:504px;" value="{{ old('telefono') }}"/><br />
             @error('telefono')
                 <br>
                 <small>{{ $message }}</small>
@@ -45,7 +53,7 @@
             @enderror
 
             Direccion:<br/>
-            <textarea name="direccion" rows="2" cols="20" id="direccion" style="height:64px;width:440px;"></textarea><br />
+            <textarea name="direccion" rows="2" cols="20" id="direccion" style="height:64px;width:440px;" value="{{ old('direccion') }}"></textarea><br />
             @error('direccion')
                 <br>
                 <small>{{ $message }}</small>

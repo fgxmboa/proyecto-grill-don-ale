@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\cliente;
+use App\Models\menu;
+use App\Models\pedido;
 
 // Definición de la clase que actúa como un modelo básico para almacenar información del cliente.
 class ClassCliente{
     // Propiedades privadas de la clase que almacenan los detalles del cliente.
     private $idCliente;
     private $nombre;
-    private $apellidos;
+    private $apellido;
+    private $cedula;
     private $email;
     private $telefono;
     private $direccion;
@@ -19,7 +22,8 @@ class ClassCliente{
     public function __construct(){
         $this -> idCliente = 0;
         $this -> nombre = "";
-        $this -> apellidos = "";
+        $this -> apellido = "";
+        $this -> cedula = "";
         $this -> email = "";
         $this -> telefono = "";
         $this -> direccion = "";
@@ -50,31 +54,36 @@ class ClienteController extends Controller
         return view('cliente.index', compact('oClientes'));
     }
     public function create(){
-        return view('cliente.create');
+        $oMenus = menu::all();
+        $oPedidos = pedido::all();
+
+        return view('cliente.create', compact('oMenus', 'oPedidos'));
     }
     public function show($cliente){
         return view('cliente.show', ['cliente' => $cliente]);
     }
     public function store(Request $request){
-        $request -> validate([
+        $request->validate([
             'nombre' => 'required',
-            'apellidos' => 'required',
+            'apellido' => 'required',
+            'cedula' => 'required|numeric',
             'email' => 'required|email',
             'telefono' => 'required',
-            'direccion' => 'required'
+            'direccion' => 'required',
         ]);
 
-         // Crea una nueva instancia de la clase y asigna los valores validados.
-        $cliente = new ClassCliente();
-        $cliente -> idCliente = 1;
-        $cliente -> nombre = $request -> get('nombre');
-        $cliente -> apellidos = $request -> get('apellidos');
-        $cliente -> email = $request -> get('email');
-        $cliente -> telefono = $request -> get('telefono');
-        $cliente -> direccion = $request -> get('direccion');
+        $cliente = new Cliente();
+        $cliente->nombre = $request->get('nombre');
+        $cliente->apellido = $request->get('apellido');
+        $cliente->cedula = $request->get('cedula');
+        $cliente->email = $request->get('email');
+        $cliente->telefono = $request->get('telefono');
+        $cliente->direccion = $request->get('direccion');
 
-        // Retorna la vista pedido.show con los datos del cliente recién creado.
-        return view('cliente.show', ['cliente' => $cliente]);
+        // Guardamos la información en la base de datos
+        $cliente->save();
+
+        return redirect()->route('cliente.show', $cliente);
 
     }
 }
