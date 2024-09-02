@@ -46,7 +46,7 @@ class ClassCliente{
 class ClienteController extends Controller
 {
     public function index(){
-        $oClientes = cliente::all();
+        $oClientes = cliente::paginate();
         return view('cliente.index', compact('oClientes'));
     }
     public function create(){

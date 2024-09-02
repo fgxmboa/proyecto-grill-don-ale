@@ -19,4 +19,5 @@
             </li>
         @endforeach
     </ul>
+    {{ $oClientes->links() }}
 @endsection
