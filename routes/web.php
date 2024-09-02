@@ -31,6 +31,9 @@ Route::get('cliente/create', [ClienteController::class, 'create'])->name('client
 Route::get('cliente/{cliente}', [ClienteController::class, 'show'])->where(['cliente' => '[A-Za-z]+'])->name('cliente.show');
 Route::post('cliente', [ClienteController::class, 'store'])->name('cliente.store');
 Route::get('cliente/{cliente}', [ClienteController::class, 'show'])->where(['cliente' => '[0-9]+'])->name('cliente.show');
+Route::get('cliente/{cliente}/edit', [ClienteController::class, 'edit'])->name('cliente.edit');
+Route::put('cliente/{cliente}', [ClienteController::class, 'update'])->name('cliente.update');
+Route::delete('cliente/{cliente}', [clienteController::class, 'destroy'])->name('cliente.destroy');
 
 // Rutas para Pedido
 Route::get('pedido', [PedidoController::class, 'index'])->name('pedido.index');

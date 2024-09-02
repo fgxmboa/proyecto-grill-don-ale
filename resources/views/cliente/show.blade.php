@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Vista de cliente')
+@section('title', 'Cliente | Grill Don Ale')
 
 @section('sidebar')
     @parent
@@ -21,6 +21,16 @@
                 Direccion: {{ $cliente->direccion }} <br>
             </p>
             <a href="{{ route('cliente.index') }}" class="btn btn-outline-primary">Volver a clientes</a>
+            <td>
+                <a href="{{ route('cliente.edit', $cliente->idClientes) }}" class="btn btn-outline-success">Editar cliente</a>
+            </td>
+            <td>
+                <form action="{{ route('cliente.destroy', $cliente) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn btn-outline-danger">Eliminar cliente</button>
+                </form>
+            </td>
         </div>
     </div>
 @endsection

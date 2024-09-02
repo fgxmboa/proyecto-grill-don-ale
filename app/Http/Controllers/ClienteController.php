@@ -86,4 +86,28 @@ class ClienteController extends Controller
         return redirect()->route('cliente.show', $oCliente);
 
     }
+
+    public function edit(cliente $cliente){
+        $oCliente = ($cliente);
+        return view('cliente.edit', compact('oCliente'));
+    }
+
+    public function update(Request $request, cliente $oCliente){
+        $oCliente->nombre = $request->get('nombre');
+        $oCliente->apellido = $request->get('apellido');
+        $oCliente->cedula = $request->get('cedula');
+        $oCliente->email = $request->get('email');
+        $oCliente->telefono = $request->get('telefono');
+        $oCliente->direccion = $request->get('direccion');
+
+        // Guardamos la información actualizada en la base de datos
+        $oCliente->save();
+
+        return redirect()->route('cliente.show', $oCliente);
+    }
+
+    public function destroy(cliente $cliente){
+        $cliente->delete();
+        return redirect()->route('cliente.index');
+    }
 }
