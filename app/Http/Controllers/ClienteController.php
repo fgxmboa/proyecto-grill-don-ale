@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\cliente;
 
 // Definición de la clase que actúa como un modelo básico para almacenar información del cliente.
 class ClassCliente{
@@ -45,7 +46,8 @@ class ClassCliente{
 class ClienteController extends Controller
 {
     public function index(){
-        return view('cliente.index');
+        $oClientes = cliente::all();
+        return view('cliente.index', compact('oClientes'));
     }
     public function create(){
         return view('cliente.create');

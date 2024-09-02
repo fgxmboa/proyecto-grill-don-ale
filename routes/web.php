@@ -30,6 +30,7 @@ Route::get('cliente', [ClienteController::class, 'index'])->name('cliente.index'
 Route::get('cliente/create', [ClienteController::class, 'create'])->name('cliente.create');
 Route::get('cliente/{cliente}', [ClienteController::class, 'show'])->where(['cliente' => '[A-Za-z]+'])->name('cliente.show');
 Route::post('cliente', [ClienteController::class, 'store'])->name('cliente.store');
+Route::get('cliente/{cliente}', [ClienteController::class, 'show'])->where(['cliente' => '[0-9]+'])->name('cliente.show');
 
 // Rutas para Pedido
 Route::get('pedido', [PedidoController::class, 'index'])->name('pedido.index');
